@@ -22,4 +22,4 @@ Aplicação mobile para uma clínica médica. Será um aplicativo com algumas op
 
 ## Documentação
 
-Disponibilizada em um quadro trello, com as funcionalidades e o que é necessário para desenvolver cada uma delas.
+Disponibilizada em um quadro [Trello](https://trello.com/b/O0lGCsKb/api-voll-med), com as funcionalidades e o que é necessário para desenvolver cada uma delas.
