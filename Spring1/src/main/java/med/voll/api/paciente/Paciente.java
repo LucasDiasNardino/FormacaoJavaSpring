@@ -34,7 +34,10 @@ public class Paciente {
     @Embedded
     private Endereco endereco;
 
+    private Boolean ativo;
+
     public Paciente(DadosCadastroPaciente dadosCadastroPaciente) {
+        this.ativo = true;
         this.nome = dadosCadastroPaciente.nome();
         this.email = dadosCadastroPaciente.email();
         this.cpf = dadosCadastroPaciente.cpf();
@@ -62,5 +65,9 @@ public class Paciente {
         if(dados.endereco() != null){
             this.endereco.atualizarEndereco(dados.endereco());
         }
+    }
+
+    public void excluir() {
+        this.ativo = false;
     }
 }
