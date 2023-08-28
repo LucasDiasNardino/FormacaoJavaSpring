@@ -14,6 +14,7 @@ import med.voll.api.domain.usuario.DadosAutenticacao;
 import med.voll.api.domain.usuario.Usuario;
 import med.voll.api.domain.usuario.UsuarioRepository;
 import med.voll.api.infra.security.TokenService;
+import med.voll.api.infra.security.DadosTokenJWT;
 
 @RestController
 @RequestMapping("/login")
@@ -27,9 +28,11 @@ public class AutenticacaoController {
     
     @PostMapping
     public ResponseEntity efetuarLogin(@RequestBody @Valid DadosAutenticacao dados){
-        var token = new UsernamePasswordAuthenticationToken(dados.login(), dados.senha());
-        var authentication = authManager.authenticate(token);
+        var authenticationToken = new UsernamePasswordAuthenticationToken(dados.login(), dados.senha());
+        var authentication = authManager.authenticate(authenticationToken);
 
-        return ResponseEntity.ok(tokenService.gerarToken((Usuario)authentication.getPrincipal()));
+        var tokenJWT = tokenService.gerarToken((Usuario)authentication.getPrincipal());
+
+        return ResponseEntity.ok(new DadosTokenJWT(tokenJWT));
     }
 }
